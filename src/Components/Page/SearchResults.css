@@ -1,0 +1,39 @@
+.searchResultsDiv {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+ul.images {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+li.imageCard {
+    flex-direction: row;
+    width:auto;
+    height: 150px;
+    min-width: 150px;
+    margin: 20px;
+    align-items: center;
+}
+
+button.favourites {
+    padding: 10px;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: #464d5a;
+    color: white;
+    width:150px;
+    height:48px;
+}
+
+button.favourites:hover {
+    cursor: pointer;
+    background-color: #15171b;
+  }

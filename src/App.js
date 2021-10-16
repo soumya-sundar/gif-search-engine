@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect} from 'react';
+import Header from './Components/Header/Header';
+import Page from './Components/Page/Page';
 
 function App() {
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    setPage(1);
+  }, []);
+
+  function onClick(pageNo) {
+    setPage(pageNo);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header onClick={onClick}/>
+      <Page page={page} />
+      <footer>
+        <p>Contact: soumya-sundar @GitHub.com</p>
+      </footer>
     </div>
   );
 }
