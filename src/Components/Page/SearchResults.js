@@ -1,31 +1,27 @@
 import React from 'react';
 import './SearchResults.css';
+import { useDispatch } from 'react-redux'
+import {useSelector} from 'react-redux';
 
 function SearchResults(props){
   let images = [];
-
+  const dispatch = useDispatch()
+  const resultsArr = useSelector((state) => state.results)
+  
   async function addToFavourites(value) {
-    if (typeof(Storage) !== "undefined") {
-      if (localStorage.addToFavouritesCount) {
-        localStorage.addToFavouritesCount = Number(localStorage.addToFavouritesCount) + 1;
-        localStorage.setItem(`${localStorage.addToFavouritesCount}`, JSON.stringify(value));
-      } else {
-        localStorage.setItem("addToFavouritesCount", 1)
-        localStorage.setItem("1", JSON.stringify(value));
-      }
-    } else {
-      console.log("Web storage not supported");
-    }
+    dispatch({type: 'addFavourites', payload: value});
   }
 
+  if(resultsArr !== null){
+    for (const [key, value] of resultsArr.entries()) {
+      images.push(<li key={key} className="imageCard">
+        <img src={value.images.downsized.url} alt={value.title} width={150} height={100}/>
+        <div style={{padding: 0, margin: 0}}> <button className="favourites" onClick={() => addToFavourites(value)}>Add to favourites</button></div>
+        </li>
+      )
+    };
+  }
 
-  for (const [key, value] of props.data.entries()) {
-    images.push(<li key={key} className="imageCard">
-      <img src={value.images.downsized.url} alt={value.title} width={150} height={100}/>
-      <div style={{padding: 0, margin: 0}}> <button className="favourites" onClick={() => addToFavourites(value)}>Add to favourites</button></div>
-      </li>
-    )
-  };
   return(
     <div className="searchResultsDiv">
       <ul className="images">

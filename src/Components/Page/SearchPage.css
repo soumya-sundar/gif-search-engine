@@ -2,8 +2,9 @@
     margin: 10px;
     border: 1px solid lightgrey;
     border-radius: 5px;
-    flex-direction: column;
-    flex-grow: 1;
+    display: block;
+    height: calc(100vh - 140);
+    overflow-y: scroll;
 }
 
 .input {

@@ -1,29 +1,20 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useRef } from 'react';
 import './SearchPage.css';
 import Input from '../Input/Input';
 import Alert from '.././Alert/Alert';
 import Api from '.././Api/Api';
 import SearchResults from './SearchResults';
-
-const initialFormState = {
-  textInput:'',
-  alert: {
-    type: 0,
-    message: null,
-  },
-  results: null
-};
+import {useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 function SearchPage() {
-  const [formData, setFormData] = useState(initialFormState);
   const textInput = useRef(null);
-
-  useEffect(() => {
-  }, []);
+  const state = useSelector((state) => state)
+  const dispatch = useDispatch()
 
   //Function to call Api
-  async function callApi() {
-    Api(formData.textInput)
+  function callApi() {
+    Api(state.textInput)
     .then(response => response.json())
     .then(response => {
         transformApiResponseData(response.data);
@@ -37,32 +28,21 @@ function SearchPage() {
   async function transformApiResponseData(data){
     const map = new Map();
     for (const value of Object.values(data)) {
-      //console.log(value.id);
       map.set(value.id, value);
     }
-    /*for (const [key, value] of map) {
-      console.log(key + ' = ' + value)
-    }*/
-    setFormData({...formData, 'results' : map});
+    dispatch({type: 'setState', textInput: state.textInput , alert: state.alert, payload: map});
   }
 
   //Function OnChange to capture user input.
   async function onChange(e) {
-    setFormData({ ...formData, 'textInput': e.target.value })
+    dispatch({type: 'onChange', textInput: e.target.value});
   }
 
   //Function to handle onBlur event for input controls.
   async function onBlur(alert, id) {
     if(alert.type !== 0) {
       if(id === 'textInput') {
-        setFormData({ ...formData,
-          'alert': {
-            type: alert.type,
-            message: alert.message
-          },
-          'textInput': '',
-          'field': id
-        });
+        dispatch({type: 'setState', textInput: state.textInput, alert: alert, payload: null});
       }
     } else {
       callApi();
@@ -72,7 +52,7 @@ function SearchPage() {
   
   //Funtion to handle alert closure
   async function onClose () {
-    setFormData({...formData, 'alert': {'type': 0, message: null}});
+    dispatch({type: 'setState', textInput: "", alert: state.alert, payload: null});
     textInput.current.focus();
   }
 
@@ -80,18 +60,19 @@ function SearchPage() {
   async function onClick () {
     callApi();
   }
-
+ 
+  
   return(
     <section className="container">
       <div className="input">
         <Input
           id={"textInput"}
           type="text"
-          inputref={textInput}
           onChange={onChange}
+          inputref={textInput}
           placeholder="Search Giphy"
-          value={formData.textInput}
-          minLength={4}
+          value={state.textInput}
+          minLength={3}
           maxLength={50}
           size={50}
           onBlur={onBlur}
@@ -101,13 +82,13 @@ function SearchPage() {
           <button type="button" onClick={onClick} className="search">Search</button>
         </div>
       </div>
-      {formData.alert.type !== 0 &&
+      {state.alert.type !== 0 &&
         <Alert
-          type={formData.alert.type}
-          message={formData.alert.message}
+          type={state.alert.type}
+          message={state.alert.message}
           onClose={onClose}
       />}
-      {formData.results !== null && <SearchResults data={formData.results} /> }
+      <SearchResults/>
     </section>
   );
 }

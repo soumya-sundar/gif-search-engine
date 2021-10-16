@@ -1,11 +1,11 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import './FavouritesPage.css';
 
-
-function collectImagesFromLocalStorage(imagesCount) {
+function BuildFavouritesJSX(favourites) {
   let images = [];
-  for(let i=1; i<=imagesCount; i++) {
-    const imageObject = JSON.parse(localStorage.getItem(i));
+  for(let i=0; i<favourites.length; i++) {
+    const imageObject = favourites[i];
     images.push(<li key={i} className="imageCard">
       <img src={imageObject.images.downsized.url} alt={imageObject.title} width={150} height={150}/>
     </li>);
@@ -13,12 +13,14 @@ function collectImagesFromLocalStorage(imagesCount) {
   return images;
 }
 
+
 function FavouritesPage(){
-  let favourites = null;
-  const imagesCount = localStorage.getItem("addToFavouritesCount");
-  if(imagesCount) {
-    const images = collectImagesFromLocalStorage(imagesCount);
-    favourites=(
+  const state = useSelector((state) => state)
+  const favourites = state.favourites;
+  let favouriteResults = null;
+  if(favourites.length > 0) {
+    const images = BuildFavouritesJSX(favourites);
+    favouriteResults=(
       <div className="favouritesDiv">
         <ul className="images">
           {images.map((image) => image)}
@@ -26,9 +28,9 @@ function FavouritesPage(){
       </div>
     );
   } else {
-      favourites=<div className="favouritesDiv"><p>You dont have any favourites yet :(</p></div>
+    favouriteResults=<div className="favouritesDiv"><p>You dont have any favourites yet :(</p></div>
   }
-  return favourites;
+  return <div className="container">{favouriteResults}</div>;
 }
 
 export default FavouritesPage;

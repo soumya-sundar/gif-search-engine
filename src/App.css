@@ -27,12 +27,12 @@ p {
 }
 
 footer {
-  min-height: 80px;
-  padding: 0 20px;
+  height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: right;
   background-color: #464d5a;
   color: white;
+  bottom: 0;
 }
