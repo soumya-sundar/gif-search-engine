@@ -2,12 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-The applications name is "Gif Search Engine". It is built on top of basic Create React App template. 
-It has two pages Search and Favorites. User can provide an input in the input text field and tab out to see the images appearing below the input section. Alternatively clicking on submit button serves the same purpose.
+The application's name is "Gif Search Engine". It is built on top of basic Create React App template. 
+It has two pages Search and Favorites. User can provide an input in the input text field and tab out to see the images appearing below the input section. Alternatively, clicking on submit button serves the same purpose.
 
-When the user provides input text the application sends rest call to Giphy API and the results are formated and transformed for display in both the pages.
+When the user provides input text, the app sends rest call to Giphy API. It then formats and transforms the results(images) returned from the API for display in both the pages.
 
-Every image displayed has a "Add to Favoutrites" button below it. When the user clicks on that these images would separately appear on Favourites page.
+Every image displayed has a "Add to Favoutrites" button below it. When the user clicks on that, images will be added to the Favourites page.
 
 The App displays consistently for different device widths(Exception Galaxy Fold).
 
