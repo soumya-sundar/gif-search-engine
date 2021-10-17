@@ -1,16 +1,16 @@
 import React, { useRef } from 'react';
 import './SearchPage.css';
-import Input from '../Input/Input';
-import Alert from '.././Alert/Alert';
-import Api from '.././Api/Api';
+import Input from '../Components/Input/Input';
+import Alert from '../Components/Alert/Alert';
+import Api from '../Components/Api/Api';
 import SearchResults from './SearchResults';
 import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux'
 
 function SearchPage() {
   const textInput = useRef(null);
-  const state = useSelector((state) => state)
-  const dispatch = useDispatch()
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   //Function to call Api
   function callApi() {
@@ -35,19 +35,24 @@ function SearchPage() {
 
   //Function OnChange to capture user input.
   async function onChange(e) {
-    dispatch({type: 'onChange', textInput: e.target.value});
+    dispatch({type: 'setState', textInput: e.target.value, alert: state.alert, payload: null});
   }
 
   //Function to handle onBlur event for input controls.
-  async function onBlur(alert, id) {
+  async function onBlur(alert, id, e) {
     if(alert.type !== 0) {
       if(id === 'textInput') {
-        dispatch({type: 'setState', textInput: state.textInput, alert: alert, payload: null});
-      }
-    } else {
+        dispatch({
+          type: 'setState',
+          textInput: state.textInput,
+          alert: alert,
+          payload: null});
+        }
+      } else {
       callApi();
     }
   }
+
 
   
   //Funtion to handle alert closure
@@ -60,7 +65,6 @@ function SearchPage() {
   async function onClick () {
     callApi();
   }
- 
   
   return(
     <section className="container">

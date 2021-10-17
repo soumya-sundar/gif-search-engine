@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import './FavouritesPage.css';
 
-function BuildFavouritesJSX(favourites) {
+function buildFavouritesJSX(favourites) {
   let images = [];
   for(let i=0; i<favourites.length; i++) {
     const imageObject = favourites[i];
@@ -19,7 +19,7 @@ function FavouritesPage(){
   const favourites = state.favourites;
   let favouriteResults = null;
   if(favourites.length > 0) {
-    const images = BuildFavouritesJSX(favourites);
+    const images = buildFavouritesJSX(favourites);
     favouriteResults=(
       <div className="favouritesDiv">
         <ul className="images">

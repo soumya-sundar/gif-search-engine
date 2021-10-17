@@ -29,9 +29,9 @@ class Input extends React.Component {
     if(required && value.length === 0) {
       alert= { type: 3, message: "This is a required field"};
     } else if(required && value.length > 0 && value.length < minLength) {
-      alert= { type: 2, message: "Input must be atleast 4 characters long."};
+      alert= { type: 2, message: `Input must be atleast "${minLength}" characters long.`};
     } else if(required && value.length > maxLength ) {
-      alert= { type: 2, message: "Input must be greater than 4 and less than 50 characters."};
+      alert= { type: 2, message: `Input must be greater than "${minLength}" and less than 50 characters.`};
     }  
     onBlur(alert, id);
   }

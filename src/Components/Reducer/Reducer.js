@@ -11,8 +11,6 @@ const initialState = {
 
 const Reducer = (state = initialState, action) => {
     switch (action.type) {
-      case 'onChange':
-        return { ...state, textInput: action.textInput };
       case 'setState':
         return { ...state,
           alert: {

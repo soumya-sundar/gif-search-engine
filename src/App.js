@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useEffect} from 'react';
 import Header from './Components/Header/Header';
-import Page from './Components/Page/Page';
+import Page from './Page/Page';
 
 
 function App() {
