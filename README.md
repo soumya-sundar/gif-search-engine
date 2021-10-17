@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+The applications name is "Gif Search Engine". It is built on top of basic Create React App template. 
+It has two pages Search and Favorites. User can provide an input in the input text field and tab out to see the images appearing below the input section. Alternatively clicking on submit button serves the same purpose.
+
+When the user provides input text the application sends rest call to Giphy API and the results are formated and transformed for display in both the pages.
+
+Every image displayed has a "Add to Favoutrites" button below it. When the user clicks on that these images would separately appear on Favourites page.
+
+React Hooks, React-Redux and Redux store features are used to persist data across the pages.
+
+Coded unit tests are available for pages, api and components. Try "npm test".
+
 ## Available Scripts
 
 In the project directory, you can run:
