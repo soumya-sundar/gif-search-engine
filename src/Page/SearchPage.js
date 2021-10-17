@@ -49,12 +49,12 @@ function SearchPage() {
           payload: null});
         }
       } else {
-      callApi();
+        if(state.textInput !== "") {
+          callApi();
+        }
     }
   }
 
-
-  
   //Funtion to handle alert closure
   async function onClose () {
     dispatch({type: 'setState', textInput: "", alert: state.alert, payload: null});
@@ -63,7 +63,9 @@ function SearchPage() {
 
   //Function to handle button click
   async function onClick () {
-    callApi();
+    if(state.textInput !== "") {
+      callApi();
+    }
   }
   
   return(
@@ -83,7 +85,7 @@ function SearchPage() {
           required
         />
         <div style={{paddingLeft: "20px"}}>
-          <button type="button" onClick={onClick} className="search">Search</button>
+          <button type="button" onClick={onClick} className="search">Submit</button>
         </div>
       </div>
       {state.alert.type !== 0 &&

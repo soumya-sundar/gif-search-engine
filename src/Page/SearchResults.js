@@ -16,7 +16,11 @@ function SearchResults(props){
     for (const [key, value] of resultsArr.entries()) {
       images.push(<li key={key} className="imageCard">
         <img src={value.images.downsized.url} alt={value.title} width={150} height={100}/>
-        <div style={{padding: 0, margin: 0}}> <button className="favourites" onClick={() => addToFavourites(value)}>Add to favourites</button></div>
+        <div style={{padding: 0, margin: 0}}> 
+          <button type="button" className="favourites" onClick={() => addToFavourites(value)}>
+            Add to favourites
+          </button>
+        </div>
         </li>
       )
     };
