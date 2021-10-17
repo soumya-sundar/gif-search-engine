@@ -9,9 +9,13 @@ When the user provides input text the application sends rest call to Giphy API a
 
 Every image displayed has a "Add to Favoutrites" button below it. When the user clicks on that these images would separately appear on Favourites page.
 
+The App displays consistently for different device widths(Exception Galaxy Fold).
+
 React Hooks, React-Redux and Redux store features are used to persist data across the pages.
 
 Coded unit tests are available for pages, api and components. Try "npm test".
+
+Manual testing snapshots are available in Manual_Testing.pdf
 
 ## Available Scripts
 
