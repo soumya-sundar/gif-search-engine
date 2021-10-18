@@ -2,7 +2,7 @@
 
 ## Overview
 
-Gif Search Engine is built on top of basic Create React App template. It has two pages Search and Favorites. User can provide an input in the input text field and tab out to see the images appearing below the input section. Alternatively, clicking on submit button serves the same purpose.
+Gif Search Engine is built on top of basic Create React App template. It has two pages Search and Favourites. User can provide an input in the input text field and tab out to see the images appearing below the input section. Alternatively, clicking on submit button serves the same purpose.
 
 When the user provides input text, the app sends rest call to Giphy API in the background. The response object(containing images) returned from the API are formated for display on the Search Page.
 
