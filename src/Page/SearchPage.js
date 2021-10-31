@@ -57,7 +57,15 @@ function SearchPage() {
 
   //Funtion to handle alert closure
   async function onClose () {
-    dispatch({type: 'setState', textInput: "", alert: state.alert, payload: null});
+    dispatch({ 
+      type: 'setState', 
+      textInput: "", 
+      alert: {
+        type: 0,
+        message: null,
+      }, 
+      payload: null
+    });
     textInput.current.focus();
   }
 

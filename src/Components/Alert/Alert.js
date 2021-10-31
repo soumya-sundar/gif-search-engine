@@ -9,8 +9,15 @@ class Alert extends React.Component {
     this.state = { close: false };
   }
 
+  static getDerivedStateFromProps = (props, state) => {
+    let returnObj = null;
+    if(props.type !== 0) {
+      returnObj = { close: false };
+    }
+    return returnObj;
+  }
+
   onClick = () => {
-    this.setState({close: true});
     this.props.onClose();
   }
 
